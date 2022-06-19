@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'location.g.dart';
@@ -28,7 +26,8 @@ class Location {
     required this.woeid,
   });
 
-  factory Location fromJson(Map<String, dynamic> json) => _$LocationFromJson(json);
+  factory Location.fromJson(Map<String, dynamic> json) =>
+      _$LocationFromJson(json);
 
   final String title;
   final LocationType locationType;
@@ -49,12 +48,12 @@ class LatLngConverter implements JsonConverter<LatLng, String> {
   const LatLngConverter();
 
   @override
-  String toJson(LatLng latLng){
-    return '${latLng.latitude}, ${latLng.longitude}';
+  String toJson(LatLng latLng) {
+    return '${latLng.latitude},${latLng.longitude}';
   }
 
   @override
-  LatLng fromJson(String jsonString){
+  LatLng fromJson(String jsonString) {
     final parts = jsonString.split(',');
     return LatLng(
       latitude: double.tryParse(parts[0]) ?? 0,
